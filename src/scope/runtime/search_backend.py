@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from dataclasses import asdict
 from pathlib import Path
 from typing import Any
@@ -13,8 +14,8 @@ from scope.runtime.http_retry import request_with_retry
 from scope.runtime.settings import RuntimeSettings, get_runtime_settings
 
 
-SERPER_SEARCH_ENDPOINT = "https://google.serper.dev/search"
-SERPER_IMAGES_ENDPOINT = "https://google.serper.dev/images"
+SERPER_SEARCH_ENDPOINT = f'{os.getenv("SERPER_BASE_URL", "https://google.serper.dev").rstrip("/")}/search'
+SERPER_IMAGES_ENDPOINT = f'{os.getenv("SERPER_BASE_URL", "https://google.serper.dev").rstrip("/")}/images'
 BLOCKED_HOST_TOKENS = ("youtube.com", "youtu.be")
 BLOCKED_SUFFIXES = (".pdf",)
 LOW_QUALITY_HOST_TOKENS = (
